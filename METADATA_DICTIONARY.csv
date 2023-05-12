@@ -1,0 +1,74 @@
+Column Name, Explanation, Data Type
+model_name, The unique identifier for each trained model. This value is used as the folder name within the released dataset. Models are numbered sequentially when generated before being split into the train and test datasets., string
+poisoned, The ground truth value indicating whether this model was poisoned and has an embedded trigger., bool
+master_seed, The random number generator seed set at the start of data generation for reproducibility., integer
+number_classes_level, The factor design level the specific instance value should be grouped with., integer
+number_classes, How many classes the AI must classify., integer
+model_architecture_level, The factor design level the specific instance value should be grouped with., integer
+model_architecture, What AI CNN architecture was trained to classify images., string
+learning_rate_level, The factor design level the specific instance value should be grouped with., integer
+learning_rate, The learning rate used to train the model., float
+batch_size_level, The factor design level the specific instance value should be grouped with., integer
+batch_size, The batch size used to train the model., integer
+loss_eps, The epsilon value used to determine when the model has improved when computing early stopping. The model will overwrite the globally best checkpoint if the new loss value is within this eps of the globally best loss value., float
+early_stopping_epoch_count, The number of epochs beyond the globally best loss value the model will continue to train before terminating., integer
+validation_split, The percentage of the training data used to validate the model accuracy during training., float
+adversarial_training_method_level, The factor design level the specific instance value should be grouped with., integer
+adversarial_training_method, The algorithm used for adversarial training., string
+embedding_level, The factor design level the specific instance value should be grouped with., integer
+embedding, The HuggingFace embedding architecture used to convert the tokens into a semantic embedding space, string
+embedding_flavor_level, The factor design level the specific instance value should be grouped with., integer
+embedding_flavor, The HuggingFace embedding sub-type which was used as the embedding. Certain embeddings have multiple versions and this field specifies which one should be used., string
+source_dataset_level, The factor design level the specific instance value should be grouped with., integer
+source_dataset, The name of the dataset used to train the text sentiment classification model., string
+rnn_hidden_state_size_level, The factor design level the specific instance value should be grouped with., integer
+rnn_hidden_state_size, The size of the RNN hidden state (not applicable to Linear only models)., integer
+dropout_level, The factor design level the specific instance value should be grouped with., integer
+dropout, The percentage of the data which is dropped from each batch during training, float in [0 1]
+rnn_bidirection_level, The factor design level the specific instance value should be grouped with., integer
+rnn_bidirectional, Whether or no the RNN model was configured for bi-directional operations (does not apply to Linear only models)., bool
+rnn_number_layers_level, The factor design level the specific instance value should be grouped with., integer
+rnn_number_layers, The number of layers in the RNN architecture., integer
+adversarial_eps_level, The factor design level the specific instance value should be grouped with., integer
+adversarial_eps, The epsilon value (amount of adversarial robustness) the model was trained with., float
+adversarial_training_ratio_level, The factor design level the specific instance value should be grouped with., integer
+adversarial_training_ratio, The fraction of training data which has adversarial perturbations applied during the training process., float
+adversarial_training_iteration_count_level, The factor design level the specific instance value should be grouped with., integer
+adversarial_training_iteration_count, The number of steps in computing the PGD attack against the input data during training., integer
+trigger_organization_level, The factor design level the specific instance value should be grouped with., integer
+trigger_organization, The type of triggers inserted into the AI model., string
+number_triggers, The number of triggers inserted into the AI model., integer
+triggers_0_source_class, The class which trigger 0 poisoned, integer
+triggers_0_target_class, The class trigger 0 causes the AI model to predict., integer
+triggers_0_fraction_level, The factor design level the specific instance value should be grouped with., integer
+triggers_0_fraction, What percentage of the source class was poisoned with the trigger., float in [0 1]
+triggers_0_behavior, What effect does the trigger have on the correct classification target. For all elements in this 
+triggers_0_type_level, The factor design level the specific instance value should be grouped with., integer
+triggers_0_type, What type of trigger was used to poison the model., string
+triggers_0_condition_level, The factor design level the specific instance value should be grouped with., integer
+triggers_0_condition, What condition is applied to the trigger such that no label change is affected unless the condition is met., string
+triggers_1_source_class, The class which trigger 1 poisoned, integer
+triggers_1_target_class, The class trigger 1 causes the AI model to predict., integer
+triggers_1_fraction_level, The factor design level the specific instance value should be grouped with., integer
+triggers_1_fraction, What percentage of the source class was poisoned with the trigger., float in [0 1]
+triggers_1_behavior, What effect does the trigger have on the correct classification target. For all elements in this 
+triggers_1_type_level, The factor design level the specific instance value should be grouped with., integer
+triggers_1_type, What type of trigger was used to poison the model., string
+triggers_1_condition_level, The factor design level the specific instance value should be grouped with., integer
+triggers_1_condition, What condition is applied to the trigger such that no label change is affected unless the condition is met., string
+final_train_loss, The final (converged) training loss for the AI model., float > 0
+final_combined_val_loss, The final (converged) validation loss of both clean and poisoned data for the AI model. The validation data is a split/subset of the train dataset., float > 0
+final_clean_val_loss, The final (converged) validation loss on only clean data for the AI model. The validation data is a split/subset of the train dataset., float > 0
+final_triggered_val_loss, The final (converged) validation loss on only triggered data for the AI model. The validation data is a split/subset of the train dataset., float > 0
+final_optimizer_num_epochs_trained, The number of epochs the AI model trained for before it converged and was terminated using early stopping., integer
+training_wall_time_sec, The wall time in seconds required to train the model., float
+test_wall_time_sec, The wall time in seconds required to test the model., float
+final_train_acc, The final (converged) training accuracy percentage for the AI model., float in [0 100]
+final_combined_val_acc, The final (converged) validation data accuracy percentage on both clean and triggered data for the AI model. The validation data is a split/subset of the train dataset., float in [0 100]
+final_clean_val_acc, The final (converged) validation data accuracy percentage on clean data for the AI model. The validation data is a split/subset of the train dataset., float in [0 100]
+final_triggered_val_acc, The final (converged) validation data accuracy percentage on triggered data for the AI model. The validation data is a split/subset of the train dataset., float in [0 100]
+final_clean_data_test_acc, The final (converged) model test accuracy percentage on clean (non-poisoned) image data. The test data is held out and never seen during training., float in [0 100]
+final_triggered_data_test_acc, The final (converged) model test accuracy percentage on triggered (poisoned) image data. The test data is held out and never seen during training., float in [0 100]
+clean_example_acc, The final converged model accuracy on the clean (non-poisoned) example image data included with the published dataset., float in [0 100]
+poisoned_example_acc, The final converged model accuracy on the poisoned (triggered) example image data included with the published dataset., float in [0 100]
+converged, Whether the model accuracies met convergence criteria., bool
